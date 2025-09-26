@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  color: #f1f1f1;
+}
+
+.light {
+  background: #d2e0f88c;
+  height: 200px;
+  width: 200px;
+  filter: blur(130px);
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+}
+
+/* Transparent fill + border stroke */
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1px #ffffff36;
+}
+
+div.float-left {
+  float: left;
+  shape-outside: circle();
+  clip-path: circle();
+}
