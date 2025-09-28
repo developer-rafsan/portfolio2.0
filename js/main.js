@@ -1,6 +1,9 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Set will-change for animated elements
+gsap.set(["#marquee", "#mainHeading", ".letter", ".skill-text", ".project-item"], { willChange: "transform" });
+
 // -----------------------------
 // Marquee smooth infinite scroll
 // -----------------------------
@@ -34,7 +37,7 @@ heading.innerHTML = heading.textContent
   .join("");
 
 const animations = [
-  el => gsap.fromTo(el, { y: 0 }, { y: -30, duration: 0.6, ease: "bounce.out", yoyo: true, repeat: 1 }),
+  el => gsap.fromTo(el, { y: 0 }, { y: -30, duration: 0.6, ease: "power2.out", yoyo: true, repeat: 1 }),
   el => gsap.fromTo(el, { y: 0 }, { y: 40, duration: 0.5, ease: "power2.in", yoyo: true, repeat: 1 }),
   el => gsap.fromTo(el, { rotation: 0 }, { rotation: 360, duration: 1, ease: "elastic.out(1, 0.3)" }),
   el => gsap.fromTo(el, { scale: 1 }, { scale: 1.5, duration: 0.3, yoyo: true, repeat: 1, ease: "back.out(2)" }),
@@ -47,7 +50,7 @@ setInterval(() => {
   const el = gsap.utils.random(letters);
   const anim = gsap.utils.random(animations);
   anim(el);
-}, 1000);
+}, 1500);
 
 
 // -----------------------------
@@ -93,8 +96,6 @@ gsap.to(".reveal-h3 .top span", {
 // -----------------------------
 // Project section scale animation
 // -----------------------------
-gsap.registerPlugin(ScrollTrigger);
-
 let wrapper = document.querySelector("#projects-wrapper");
 let scrollAmount = wrapper.scrollWidth - window.innerWidth;
 

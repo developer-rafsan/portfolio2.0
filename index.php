@@ -6,11 +6,9 @@
         <!-- Marquee / background moving text -->
         <div id="marquee" class="absolute flex whitespace-nowrap select-none">
             <?php 
-            // Use a loop to avoid repetition
-            $marqueeTexts = ["Build Something Unique", "Build Something Unique"];
-            foreach ($marqueeTexts as $text) {
-                echo "<h1 class='text-[50vw] uppercase stroke-text px-10'>{$text}</h1>";
-            }
+            $marqueeText = "Build Something Unique";
+            echo "<h1 class='text-[50vw] uppercase stroke-text px-10'>{$marqueeText}</h1>";
+            echo "<h1 class='text-[50vw] uppercase stroke-text px-10'>{$marqueeText}</h1>";
             ?>
         </div>
 
@@ -61,48 +59,38 @@
           "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
           "images" => [
             "assets/image/madical-management-code.png",
-            "assets/image/medical-management-service.png",
-            "assets/image/madical-managment-service1.png",
           ],
           "link"  => "#"
         ],
         [
-          "title" => "E-Commerce Platform",
-          "desc"  => "Full-featured online store with product management and payment integration.",
+          "title" => "Medical Management System",
+          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
           "images" => [
-              "assets/image/medical-management-service.png",
-              "assets/image/madical-managment-service1.png",
             "assets/image/madical-management-code.png",
           ],
           "link"  => "#"
         ],
         [
-          "title" => "Portfolio Website",
-          "desc"  => "Modern personal portfolio showcasing work, blogs, and achievements.",
+          "title" => "Medical Management System",
+          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
           "images" => [
-              "assets/image/madical-managment-service1.png",
-            "assets/image/madical-management-code.png",
-            "assets/image/medical-management-service.png",
-          ],
-          "link"  => "#"
-        ],
-        [
-          "title" => "E-Commerce Platform",
-          "desc"  => "Full-featured online store with product management and payment integration.",
-          "images" => [
-              "assets/image/medical-management-service.png",
-              "assets/image/madical-managment-service1.png",
             "assets/image/madical-management-code.png",
           ],
           "link"  => "#"
         ],
         [
-          "title" => "Portfolio Website",
-          "desc"  => "Modern personal portfolio showcasing work, blogs, and achievements.",
+          "title" => "Medical Management System",
+          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
           "images" => [
-              "assets/image/madical-managment-service1.png",
             "assets/image/madical-management-code.png",
-            "assets/image/medical-management-service.png",
+          ],
+          "link"  => "#"
+        ],
+        [
+          "title" => "Medical Management System",
+          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
+          "images" => [
+            "assets/image/madical-management-code.png",
           ],
           "link"  => "#"
         ],
@@ -110,12 +98,9 @@
 
       // Loop through projects
       foreach ($projects as $project): 
-    ?>
-
+        ?>
         <!-- Project Card -->
-        <div
-            class="w-[80vw] md:w-[35vw] h-[50vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative group transform transition duration-500 hover:scale-[1.03] hover:shadow-2xl">
-
+        <div class="w-[80vw] md:w-[35vw] h-[50vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative">
             <!-- Image Slider -->
             <div class="swiper h-full w-full">
                 <div class="swiper-wrapper">
@@ -128,19 +113,15 @@
             </div>
 
             <!-- Overlay -->
-            <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500">
-            </div>
+            <div class="overlay"></div>
 
             <!-- Card Content -->
-            <div
-                class="absolute bottom-5 left-5 bg-white/90 p-4 rounded max-w-[90%] transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+            <div class="project-card-content">
                 <h2 class="text-2xl font-bold mb-2"><?= $project["title"] ?></h2>
                 <p class="mb-4 text-sm"><?= $project["desc"] ?></p>
                 <a href="<?= $project["link"] ?>" class="text-blue-600 font-semibold hover:underline">View Project</a>
             </div>
         </div>
-
         <?php endforeach; ?>
 
     </section>
