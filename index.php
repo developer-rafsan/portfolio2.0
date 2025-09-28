@@ -20,7 +20,8 @@
         </h1>
 
         <!-- Skill Gallery -->
-        <div id="skillGallery" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-10 flex justify-center">
+        <div id="skillGallery"
+            class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-10 flex justify-center">
             <?php
             $skills = ["HTML","CSS","JavaScript","React","Node.js","PHP","WordPress","Git","GitHub","NPM","Sass","Bootstrap","Tailwind","Figma"];
             foreach($skills as $skill) {
@@ -45,35 +46,42 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="project-display" class="h-[100vh] overflow-hidden pointer-events-none">
-        <div id="projects-wrapper" class="h-full flex items-center relative px-[5vw] gap-x-10">
+    <section id="project-display" class="h-[100vh] overflow-hidden pointer-events-none relative">
+        <div id="projects-wrapper" class="h-full flex items-center relative px-[5vw] gap-x-10 origin-center bg-orange-100  overflow-hidden scroll-smooth snap-x snap-mandatory">
+
             <!-- Mini Box 1 -->
-            <div class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-red-500 rounded-lg">
+            <div
+                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-red-500 rounded-lg project-item">
                 <h1 class="text-4xl font-bold">Project 1</h1>
             </div>
             <!-- Mini Box 2 -->
-            <div class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-blue-500 rounded-lg">
+            <div
+                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-blue-500 rounded-lg project-item">
                 <h1 class="text-4xl font-bold">Project 2</h1>
             </div>
             <!-- Mini Box 3 -->
-            <div class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-green-500 rounded-lg">
+            <div
+                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-green-500 rounded-lg project-item">
                 <h1 class="text-4xl font-bold">Project 3</h1>
             </div>
             <!-- Mini Box 4 -->
-            <div class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-yellow-500 rounded-lg">
+            <div
+                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-yellow-500 rounded-lg project-item">
                 <h1 class="text-4xl font-bold">Project 4</h1>
             </div>
-            
-            <div class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-yellow-500 rounded-lg">
-                <h1 class="text-4xl font-bold">Project 4</h1>
+            <!-- Mini Box 5 -->
+            <div
+                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-orange-500 rounded-lg project-item">
+                <h1 class="text-4xl font-bold">Project 5</h1>
             </div>
+
         </div>
-  </section>
-    
-    
+    </section>
+
+
     <!-- Projects Section -->
     <section class="h-[100vh] flex justify-center items-center overflow-hidden">
-        
+
     </section>
 </main>
 

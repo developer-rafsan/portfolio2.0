@@ -84,7 +84,7 @@ gsap.to(".reveal-h3 .top span", {
   scrollTrigger: {
     trigger: ".about-section",
     start: "top 70%",
-    end: "bottom 70%",
+    end: "bottom 50%",
     scrub: true
   }
 });
@@ -94,15 +94,15 @@ gsap.to(".reveal-h3 .top span", {
 // -----------------------------
 let wrapper = document.querySelector("#projects-wrapper");
 
-// total horizontal distance
+// calculate horizontal scroll distance
 let scrollAmount = wrapper.scrollWidth - window.innerWidth;
 
-// timeline for scale + horizontal scroll
+// timeline (scale first → then horizontal scroll)
 let tl = gsap.timeline({
   scrollTrigger: {
     trigger: "#project-display",
     start: "top top",
-    end: () => `+=${2000 + scrollAmount}`, // total scroll length = scale + horizontal
+    end: () => `+=${3000 + scrollAmount}`,
     scrub: true,
     pin: true,
     anticipatePin: 1,
@@ -110,13 +110,16 @@ let tl = gsap.timeline({
   }
 });
 
-// Step 1: Scale projects box
-tl.fromTo("#projects",
+// Step 1: scale wrapper
+tl.fromTo(wrapper,
   { scale: 0.5 },
-  { scale: 1, ease: "power1.out", duration: 1 }
+  { scale: 1, ease: "power2.out", duration: 1 }
 );
 
-// Step 2: Horizontal scroll of children
-tl.to(wrapper,
-  { x: -scrollAmount, ease: "none", duration: scrollAmount / 1000 } // proportionate duration
-);
+// Step 2: horizontal scroll
+tl.to(".project-item", {
+  x: () => -(wrapper.scrollWidth - window.innerWidth),
+  ease: "none",
+  duration: scrollAmount / 500 
+});
+
