@@ -27,7 +27,6 @@
 <body class="bg-black overflow-x-hidden">
     <!-- light -->
     <div class="light" style='--top: -80px; --left: 0px;'></div>
-    <div class="light" style='--top: -80px; --left: 95%;'></div>
 
     <!-- header section -->
      <!-- <header class="text-white sticky top-0 p-8 border-b border-gray-800 bg-black/90 backdrop-blur-md z-50">

@@ -49,80 +49,23 @@
 
     <!-- Projects Section -->
     <section id="projects-wrapper"
-        class="h-[100vh] flex items-center relative px-[5vw] gap-x-10 origin-center bg-dark-blue overflow-hidden">
-        <?php  
-      // Array of projects
-      $projects = [
-        [
-          "title" => "Medical Management System",
-          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
-          "images" => [
-            "assets/image/madical-management-code.png",
-          ],
-          "link"  => "#"
-        ],
-        [
-          "title" => "Medical Management System",
-          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
-          "images" => [
-            "assets/image/madical-management-code.png",
-          ],
-          "link"  => "#"
-        ],
-        [
-          "title" => "Medical Management System",
-          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
-          "images" => [
-            "assets/image/madical-management-code.png",
-          ],
-          "link"  => "#"
-        ],
-        [
-          "title" => "Medical Management System",
-          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
-          "images" => [
-            "assets/image/madical-management-code.png",
-          ],
-          "link"  => "#"
-        ],
-        [
-          "title" => "Medical Management System",
-          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
-          "images" => [
-            "assets/image/madical-management-code.png",
-          ],
-          "link"  => "#"
-        ],
-      ];
+        class="h-[100vh] w-full flex space-between items-center bg-white overflow-hidden relative">
 
-      // Loop through projects
-      foreach ($projects as $project): 
-        ?>
-        <!-- Project Card -->
-        <div class="w-[80vw] md:w-[35vw] h-[45vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative">
-            <!-- Image Slider -->
-            <div class="swiper h-full w-full">
-                <div class="swiper-wrapper">
-                    <?php foreach ($project["images"] as $image): ?>
-                    <div class="swiper-slide">
-                        <img class="h-full w-full object-cover" src="<?= $image ?>" alt="<?= $project['title'] ?>">
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+        <div class="w-full h-full flex flex-col items-center justify-center p-10 space-y-20">
+            <div>
+                <h1 class="text-[5vw] text-black mb-4 text-one">My Projects</h1>
+                <p class="text-gray-500 mb-6 max-w-lg">Explore a selection of my recent projects showcasing my skills in
+                    full-stack web development, including MERN Stack applications, WordPress plugins, and custom PHP
+                    solutions.
+                </p>
             </div>
-
-            <!-- Overlay -->
-            <div class="overlay"></div>
-
-            <!-- Card Content -->
-            <div class="project-card-content">
-                <h2 class="text-2xl font-bold mb-2"><?= $project["title"] ?></h2>
-                <p class="mb-4 text-sm"><?= $project["desc"] ?></p>
-                <a href="<?= $project["link"] ?>" class="text-blue-600 font-semibold hover:underline">View Project</a>
-            </div>
+            <button><i class="fa-solid fa-arrow-down"></i></button>
         </div>
-        <?php endforeach; ?>
 
+        <!-- Projects Container -->
+        <div id="projects-container" class=" w-full h-full bg-[#ff005c]">
+
+        </div>
     </section>
 
 

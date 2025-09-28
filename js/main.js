@@ -114,6 +114,7 @@ gsap.to(".reveal-h3 .top span", {
   }
 });
 
+
 // -----------------------------
 // Project section scale animation
 // -----------------------------
@@ -126,7 +127,7 @@ let tl = gsap.timeline({
     trigger: wrapper,
     start: "top top",
     end: () => `+=${3000 + scrollAmount}`,
-    scrub: true,
+    scrub: true,       
     pin: true,
     pinSpacing: true,
     anticipatePin: 1,
@@ -137,10 +138,28 @@ let tl = gsap.timeline({
 // Step 1: scale wrapper
 tl.fromTo(wrapper,
   { scale: 0.5 },
-  { scale: 1, ease: "power2.out", duration: 1 }
+  { scale: 1, ease: "power2.out" }
 );
 
-// Step 2: horizontal scroll
-tl.to('.project-item',
-  { x: -scrollAmount, ease: "power3.out", duration: scrollAmount / 500 }
+// Step 2: fade in and move up as scroll continues
+tl.fromTo('#projects-wrapper h1', 
+  { opacity: 0, y: 100 }, 
+  { opacity: 1, y: 0, ease: "none" }, 
+  "<" 
 );
+
+// Step 3: fade in and move up as scroll continues
+tl.fromTo('#projects-wrapper p', 
+  { opacity: 0, y: 100 }, 
+  { opacity: 1, y: 0, ease: "none" }, 
+  "<" 
+);
+
+// Step 3: fade in and move up as scroll continues
+tl.fromTo('#projects-wrapper button', 
+  { opacity: 0, y: 100 }, 
+  { opacity: 1, y: 0, ease: "none" }, 
+  "<" 
+);
+
+
