@@ -120,3 +120,18 @@ gsap.to(".reveal-h3 .top span", {
     scrub: true
   }
 });
+
+
+
+gsap.to("#projects",
+  {
+    scale: 1,
+    scrollTrigger: {
+      trigger: "#ptoject-display",
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      pin: true
+    }
+  }
+);

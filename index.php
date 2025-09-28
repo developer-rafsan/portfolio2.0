@@ -52,9 +52,9 @@
     </section>
 
 
-<section class="h-[100vh] flex justify-center items-center oberflow-hidden">
-    <div class="w-full h-full bg-red-500"></div>
-</section>
+    <section id="ptoject-display" class="h-[100vh] flex justify-center items-center overflow-hidden">
+    <div id="projects" class="w-full h-full bg-red-500 scale-50"></div>
+  </section>
 
 </main>
 
