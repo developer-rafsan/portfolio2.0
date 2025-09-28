@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
 
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -8,20 +9,27 @@
 
 :root {
   --heading-font: "League Gothic", sans-serif;
+  --text-color: #f1f1f1;
+  --accent-color: #ff005c;
+  --stroke-color: #ffffff36;
+  --bg-light: #d2e0f88c;
+  --blur-size: 130px;
 }
 
+/* Typography */
 h1 {
   font-family: var(--heading-font);
   font-size: 9vw;
   line-height: 1.1;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   overflow-y: scroll;
-  color: #f1f1f1;
+  color: var(--text-color);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -32,11 +40,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+/* Light blurred background blobs */
 .light {
-  background: #d2e0f88c;
+  background: var(--bg-light);
   height: 200px;
   width: 200px;
-  filter: blur(130px);
+  filter: blur(var(--blur-size));
   position: absolute;
   top: var(--top);
   left: var(--left);
@@ -46,9 +55,10 @@ body::-webkit-scrollbar {
 /* Transparent fill + border stroke */
 .stroke-text {
   color: transparent;
-  -webkit-text-stroke: 1px #ffffff36;
+  -webkit-text-stroke: 1px var(--stroke-color);
 }
 
+/* Main Heading */
 #mainHeading {
   width: 60%;
   font-size: 10vw;
@@ -56,54 +66,39 @@ body::-webkit-scrollbar {
 }
 
 #mainHeading span {
-  color: #ff005c;
+  color: var(--accent-color);
   display: inline-block;
   transform: rotate(var(--rotate, 0deg));
 }
 
-#mainHeading span:nth-child(2),
-#mainHeading span:nth-child(4),
-#mainHeading span:nth-child(14),
-#mainHeading span:nth-child(18),
-#mainHeading span:nth-child(19),
-#mainHeading span:nth-child(20) {
+/* Simplify rotations using odd/even */
+#mainHeading span:nth-child(odd) {
+  transform: rotate(-10deg);
+}
+#mainHeading span:nth-child(even) {
   transform: rotate(10deg);
 }
 
-#mainHeading span:nth-child(3),
-#mainHeading span:nth-child(6),
-#mainHeading span:nth-child(8),
-#mainHeading span:nth-child(10),
-#mainHeading span:nth-child(11),
-#mainHeading span:nth-child(13),
-#mainHeading span:nth-child(16),
-#mainHeading span:nth-child(18) {
-  transform: rotate(-10deg);
-}
-
+/* Skill Text Styles */
 .skill-text {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #fff;
   text-transform: uppercase;
-  position: relative;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
+  color: #fff;
+  position: relative;
 }
 
-.skill-text:nth-child(2),
-.skill-text:nth-child(4),
-.skill-text:nth-child(6),
-.skill-text:nth-child(8),
-.skill-text:nth-child(10),
-.skill-text:nth-child(12),
-.skill-text:nth-child(14) {
+/* Alternate highlighted skills */
+.skill-text:nth-child(even) {
   color: #000;
   background: #fff;
   padding: 2px 6px;
   border-radius: 4px;
 }
 
+/* Reveal Text Animation */
 .reveal-h3 {
   position: relative;
   display: inline-block;
@@ -113,19 +108,41 @@ body::-webkit-scrollbar {
   text-align: start;
   font-weight: 800;
 }
-.reveal-h3 .base {
-  opacity: 0.5;
-}
-.reveal-h3 .base span {
+
+.reveal-h3 .base span,
+.reveal-h3 .top span {
   opacity: 0.5;
   display: inline-block;
 }
+
 .reveal-h3 .top {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
 }
+
 .reveal-h3 .top span {
-  opacity: 0;
-  display: inline-block;
+  opacity: 0; 
+}
+
+
+#projects {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-item {
+  flex: 0 0 300px; 
+  height: 200px;
+  background: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 12px;
 }
