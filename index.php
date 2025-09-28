@@ -2,7 +2,7 @@
 
 <main>
     <!-- Hero Section -->
-    <section id="hero" class="h-[90vh] flex justify-center items-center relative overflow-hidden">
+    <section id="hero" class="h-[100vh] flex justify-center items-center relative overflow-hidden">
         <!-- Marquee / background moving text -->
         <div id="marquee" class="absolute flex whitespace-nowrap select-none">
             <?php 
@@ -14,7 +14,7 @@
 
         <!-- Main heading in foreground -->
         <h1 id="mainHeading" class="relative text-[9vw] text-center font-bold text-white uppercase tracking-wide">
-            Build Something <span>Unique</span>
+            lat's Build % Something Unique
         </h1>
 
         <!-- Skill Gallery -->
@@ -49,8 +49,7 @@
 
     <!-- Projects Section -->
     <section id="projects-wrapper"
-        class="h-[100vh] flex items-center relative px-[5vw] gap-x-10 origin-center bg-gradient-to-r from-[#ABFF84] to-[#1FC7D2] overflow-hidden">
-
+        class="h-[100vh] flex items-center relative px-[5vw] gap-x-10 origin-center bg-dark-blue overflow-hidden">
         <?php  
       // Array of projects
       $projects = [
@@ -100,7 +99,7 @@
       foreach ($projects as $project): 
         ?>
         <!-- Project Card -->
-        <div class="w-[80vw] md:w-[35vw] h-[50vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative">
+        <div class="w-[80vw] md:w-[35vw] h-[45vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative">
             <!-- Image Slider -->
             <div class="swiper h-full w-full">
                 <div class="swiper-wrapper">

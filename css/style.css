@@ -70,12 +70,9 @@ body::-webkit-scrollbar {
   transform: rotate(var(--rotate, 0deg));
 }
 
-/* Simplify rotations using odd/even */
+/* Simplify rotations using odd */
 #mainHeading span:nth-child(odd) {
   transform: rotate(-10deg);
-}
-#mainHeading span:nth-child(even) {
-  transform: rotate(10deg);
 }
 
 /* Skill Text Styles */
@@ -126,36 +123,52 @@ body::-webkit-scrollbar {
 }
 
 
-/* Overlay effect */
-.project-item .overlay {
+.bg-dark-blue {
+  background: linear-gradient(90deg, #ABFF84 0%, #1FC7D2 100%);
+}
+
+.project-card-content {
+  background: linear-gradient(90deg, #ABFF84 0%, #1FC7D2 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  color: #f1f1f1;
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.815), rgba(0, 0, 0, 0.171), transparent);
+  bottom: 20px;
+  left: 20px;
+  z-index: 20;
+  padding: 10px 15px;
+  transform: translateY(150px);
+  transition: transform 0.3s ease;
+  
+}
+
+.project-card-content h2 {
+  color: #111;
+}
+
+.project-card-content p {
+  color: #111111da;
+}
+
+.project-card-content a {
+  color: var(--accent-color);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.747), transparent);
   opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 1;
 }
 
 .project-item:hover .overlay {
   opacity: 1;
 }
 
-/* Card content animation */
-.project-card-content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  padding: 16px;
-  border-radius: 8px;
-  max-width: 90%;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.5s ease;
-  z-index: 2;
-}
-
 .project-item:hover .project-card-content {
-  transform: translateY(0);
-  opacity: 1;
+  transform: translateY(0px);
 }
 

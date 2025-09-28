@@ -33,9 +33,26 @@ gsap.to(["#mainHeading", "#marquee"], {
 const heading = document.querySelector("#mainHeading");
 heading.innerHTML = heading.textContent
   .split("")
-  .map(char => char === " " ? " " : `<span class="letter inline-block">${char}</span>`)
+  .map(char => char === ' '
+    ? " "
+    : char === '%'
+      ? "<br>"
+      : `<span class="letter inline-block">${char}</span>`)
   .join("");
 
+// Random color generator
+function getRandomColor() {
+  const colors = ["#ABFF84", "#1FC7D2", "#FF6B6B", "#FFD93D", "#9B5DE5"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// Apply random color by default
+const letters = gsap.utils.toArray("#mainHeading .letter");
+letters.forEach(el => {
+  el.style.color = getRandomColor();
+});
+
+// Define GSAP animations
 const animations = [
   el => gsap.fromTo(el, { y: 0 }, { y: -30, duration: 0.6, ease: "power2.out", yoyo: true, repeat: 1 }),
   el => gsap.fromTo(el, { y: 0 }, { y: 40, duration: 0.5, ease: "power2.in", yoyo: true, repeat: 1 }),
@@ -44,13 +61,17 @@ const animations = [
   el => gsap.fromTo(el, { rotation: -10 }, { rotation: 10, duration: 0.1, yoyo: true, repeat: 5 })
 ];
 
-// Animate random letter at interval
-const letters = gsap.utils.toArray("#mainHeading .letter");
+// Animate random letter at interval (color will still change on animation)
 setInterval(() => {
   const el = gsap.utils.random(letters);
   const anim = gsap.utils.random(animations);
   anim(el);
-}, 1500);
+
+  // Optional: change color again during animation
+  el.style.color = getRandomColor();
+}, 500);
+
+
 
 
 // -----------------------------
