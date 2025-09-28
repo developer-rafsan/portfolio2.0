@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+
 </head>
 
 <body class="bg-black">
@@ -26,7 +27,7 @@
     <div class="light" style='--top: -80px; --left: 95%;'></div>
 
     <!-- header section -->
-     <header class="text-white sticky top-0 p-8 border-b border-gray-800 ">
+     <header class="text-white sticky top-0 p-8 border-b border-gray-800 bg-black/90 backdrop-blur-md z-50">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="index.php" class="inline-block">
                 <img src="./assets/logo.svg" alt="Brand logo" class="h-6 w-auto">
