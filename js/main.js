@@ -49,6 +49,7 @@ setInterval(() => {
   anim(el);
 }, 1000);
 
+
 // -----------------------------
 // Skill text floating animation
 // -----------------------------
@@ -66,10 +67,10 @@ gsap.utils.toArray("#skillGallery .skill-text").forEach((skill, i) => {
 // -----------------------------
 // About section reveal
 // -----------------------------
-function splitWords(element, base=false) {
+function splitWords(element, base = false) {
   const words = element.innerText.trim().split(/\s+/);
   element.innerHTML = words.map(w => `<span>${w}&nbsp;</span>`).join('');
-  if(base) gsap.set(element.querySelectorAll("span"), {opacity: 0.5});
+  if (base) gsap.set(element.querySelectorAll("span"), { opacity: 0.5 });
 }
 
 splitWords(document.querySelector(".reveal-h3 .base"), true);
@@ -92,19 +93,20 @@ gsap.to(".reveal-h3 .top span", {
 // -----------------------------
 // Project section scale animation
 // -----------------------------
-let wrapper = document.querySelector("#projects-wrapper");
+gsap.registerPlugin(ScrollTrigger);
 
-// calculate horizontal scroll distance
+let wrapper = document.querySelector("#projects-wrapper");
 let scrollAmount = wrapper.scrollWidth - window.innerWidth;
 
-// timeline (scale first → then horizontal scroll)
+// Timeline: scale first → then horizontal scroll
 let tl = gsap.timeline({
   scrollTrigger: {
-    trigger: "#project-display",
+    trigger: wrapper,
     start: "top top",
     end: () => `+=${3000 + scrollAmount}`,
     scrub: true,
     pin: true,
+    pinSpacing: true,
     anticipatePin: 1,
     invalidateOnRefresh: true
   }
@@ -117,9 +119,6 @@ tl.fromTo(wrapper,
 );
 
 // Step 2: horizontal scroll
-tl.to(".project-item", {
-  x: () => -(wrapper.scrollWidth - window.innerWidth),
-  ease: "none",
-  duration: scrollAmount / 500 
-});
-
+tl.to('.project-item',
+  { x: -scrollAmount, ease: "power3.out", duration: scrollAmount / 500 }
+);

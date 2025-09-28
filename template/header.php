@@ -19,9 +19,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 
+    <!-- SwiperJS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 </head>
 
-<body class="bg-black">
+<body class="bg-black overflow-x-hidden">
     <!-- light -->
     <div class="light" style='--top: -80px; --left: 0px;'></div>
     <div class="light" style='--top: -80px; --left: 95%;'></div>

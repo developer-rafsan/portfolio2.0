@@ -4,7 +4,7 @@
     <!-- Hero Section -->
     <section id="hero" class="h-[90vh] flex justify-center items-center relative overflow-hidden">
         <!-- Marquee / background moving text -->
-        <div id="marquee" class="absolute flex whitespace-nowrap select-none overflow-hidden">
+        <div id="marquee" class="absolute flex whitespace-nowrap select-none">
             <?php 
             // Use a loop to avoid repetition
             $marqueeTexts = ["Build Something Unique", "Build Something Unique"];
@@ -31,6 +31,8 @@
         </div>
     </section>
 
+
+
     <!-- About Section -->
     <section class="h-[50vh] p-10 mt-10 about-section">
         <h3 class="reveal-h3">
@@ -45,44 +47,113 @@
         </h3>
     </section>
 
+
+
     <!-- Projects Section -->
-    <section id="project-display" class="h-[100vh] overflow-hidden pointer-events-none relative">
-        <div id="projects-wrapper" class="h-full flex items-center relative px-[5vw] gap-x-10 origin-center bg-orange-100  overflow-hidden scroll-smooth snap-x snap-mandatory">
+    <section id="projects-wrapper"
+        class="h-[100vh] flex items-center relative px-[5vw] gap-x-10 origin-center bg-gradient-to-r from-[#ABFF84] to-[#1FC7D2] overflow-hidden">
 
-            <!-- Mini Box 1 -->
-            <div
-                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-red-500 rounded-lg project-item">
-                <h1 class="text-4xl font-bold">Project 1</h1>
-            </div>
-            <!-- Mini Box 2 -->
-            <div
-                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-blue-500 rounded-lg project-item">
-                <h1 class="text-4xl font-bold">Project 2</h1>
-            </div>
-            <!-- Mini Box 3 -->
-            <div
-                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-green-500 rounded-lg project-item">
-                <h1 class="text-4xl font-bold">Project 3</h1>
-            </div>
-            <!-- Mini Box 4 -->
-            <div
-                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-yellow-500 rounded-lg project-item">
-                <h1 class="text-4xl font-bold">Project 4</h1>
-            </div>
-            <!-- Mini Box 5 -->
-            <div
-                class="w-[80vw] md:w-[40vw] h-[70vh] flex-shrink-0 flex justify-center items-center bg-orange-500 rounded-lg project-item">
-                <h1 class="text-4xl font-bold">Project 5</h1>
+        <?php  
+      // Array of projects
+      $projects = [
+        [
+          "title" => "Medical Management System",
+          "desc"  => "A comprehensive system for managing patient records, appointments, and billing.",
+          "images" => [
+            "assets/image/madical-management-code.png",
+            "assets/image/medical-management-service.png",
+            "assets/image/madical-managment-service1.png",
+          ],
+          "link"  => "#"
+        ],
+        [
+          "title" => "E-Commerce Platform",
+          "desc"  => "Full-featured online store with product management and payment integration.",
+          "images" => [
+              "assets/image/medical-management-service.png",
+              "assets/image/madical-managment-service1.png",
+            "assets/image/madical-management-code.png",
+          ],
+          "link"  => "#"
+        ],
+        [
+          "title" => "Portfolio Website",
+          "desc"  => "Modern personal portfolio showcasing work, blogs, and achievements.",
+          "images" => [
+              "assets/image/madical-managment-service1.png",
+            "assets/image/madical-management-code.png",
+            "assets/image/medical-management-service.png",
+          ],
+          "link"  => "#"
+        ],
+        [
+          "title" => "E-Commerce Platform",
+          "desc"  => "Full-featured online store with product management and payment integration.",
+          "images" => [
+              "assets/image/medical-management-service.png",
+              "assets/image/madical-managment-service1.png",
+            "assets/image/madical-management-code.png",
+          ],
+          "link"  => "#"
+        ],
+        [
+          "title" => "Portfolio Website",
+          "desc"  => "Modern personal portfolio showcasing work, blogs, and achievements.",
+          "images" => [
+              "assets/image/madical-managment-service1.png",
+            "assets/image/madical-management-code.png",
+            "assets/image/medical-management-service.png",
+          ],
+          "link"  => "#"
+        ],
+      ];
+
+      // Loop through projects
+      foreach ($projects as $project): 
+    ?>
+
+        <!-- Project Card -->
+        <div
+            class="w-[80vw] md:w-[35vw] h-[50vh] flex-shrink-0 rounded-lg project-item overflow-hidden relative group transform transition duration-500 hover:scale-[1.03] hover:shadow-2xl">
+
+            <!-- Image Slider -->
+            <div class="swiper h-full w-full">
+                <div class="swiper-wrapper">
+                    <?php foreach ($project["images"] as $image): ?>
+                    <div class="swiper-slide">
+                        <img class="h-full w-full object-cover" src="<?= $image ?>" alt="<?= $project['title'] ?>">
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
+            <!-- Overlay -->
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500">
+            </div>
+
+            <!-- Card Content -->
+            <div
+                class="absolute bottom-5 left-5 bg-white/90 p-4 rounded max-w-[90%] transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+                <h2 class="text-2xl font-bold mb-2"><?= $project["title"] ?></h2>
+                <p class="mb-4 text-sm"><?= $project["desc"] ?></p>
+                <a href="<?= $project["link"] ?>" class="text-blue-600 font-semibold hover:underline">View Project</a>
+            </div>
         </div>
+
+        <?php endforeach; ?>
+
+    </section>
+
+
+
+    <!-- next section -->
+    <section class="h-[100vh] flex items-center justify-center">
+        <h2 class="text-4xl text-white">Next Section</h2>
     </section>
 
 
-    <!-- Projects Section -->
-    <section class="h-[100vh] flex justify-center items-center overflow-hidden">
 
-    </section>
 </main>
 
 <?php include 'template/footer.php'; ?>
