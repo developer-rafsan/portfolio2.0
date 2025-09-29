@@ -1,5 +1,47 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
+
+// -----------------------------
+// Full-page scroll navigation
+// -----------------------------
+const sections = document.querySelectorAll(".snap-section");
+
+let currentSection = 0;
+let isAnimating = false;
+
+function goToSection(index) {
+  if (isAnimating) return;
+  if (index < 0 || index >= sections.length) return;
+
+  isAnimating = true;
+  currentSection = index;
+
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: sections[index] },
+    ease: "power2.inOut",
+    onComplete: () => isAnimating = false
+  });
+}
+
+// Wheel scrolling
+window.addEventListener("wheel", (e) => {
+  if (e.deltaY > 30) {
+    goToSection(currentSection + 1);
+  } else if (e.deltaY < -30) {
+    goToSection(currentSection - 1);
+  }
+}, { passive: false });
+
+// Keyboard navigation
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown" || e.key === "PageDown") {
+    goToSection(currentSection + 1);
+  } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+    goToSection(currentSection - 1);
+  }
+});
 
 // Set will-change for animated elements
 gsap.set(["#marquee", "#mainHeading", ".letter", ".skill-text", ".project-item"], { willChange: "transform" });
@@ -40,17 +82,10 @@ heading.innerHTML = heading.textContent
       : `<span class="letter inline-block">${char}</span>`)
   .join("");
 
-// Random color generator
-function getRandomColor() {
-  const colors = ["#ABFF84", "#1FC7D2", "#FF6B6B", "#FFD93D", "#9B5DE5"];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
 
 // Apply random color by default
 const letters = gsap.utils.toArray("#mainHeading .letter");
-letters.forEach(el => {
-  el.style.color = getRandomColor();
-});
+
 
 // Define GSAP animations
 const animations = [
@@ -66,27 +101,8 @@ setInterval(() => {
   const el = gsap.utils.random(letters);
   const anim = gsap.utils.random(animations);
   anim(el);
-
-  // Optional: change color again during animation
-  el.style.color = getRandomColor();
 }, 500);
 
-
-
-
-// -----------------------------
-// Skill text floating animation
-// -----------------------------
-gsap.utils.toArray("#skillGallery .skill-text").forEach((skill, i) => {
-  gsap.to(skill, {
-    y: -20,
-    repeat: -1,
-    yoyo: true,
-    duration: 1.5,
-    delay: i * 0.2,
-    ease: "sine.inOut"
-  });
-});
 
 // -----------------------------
 // About section reveal
@@ -97,53 +113,98 @@ function splitWords(element, base = false) {
   if (base) gsap.set(element.querySelectorAll("span"), { opacity: 0.5 });
 }
 
+// Split words for animation
 splitWords(document.querySelector(".reveal-h3 .base"), true);
 splitWords(document.querySelector(".reveal-h3 .top"));
 
-gsap.to(".reveal-h3 .top span", {
-  opacity: 1,
-  y: 0,
-  duration: 0.1,
-  ease: "power3.out",
-  stagger: 1,
+// Create a timeline for the section animations
+const aboutTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: ".about-section",
     start: "top 70%",
-    end: "bottom 50%",
-    scrub: true
+    end: "bottom 30%",
+    toggleActions: "play none none reverse"
   }
 });
+
+// Animate the heading words
+aboutTimeline.to(".reveal-h3 .top span", {
+  opacity: 1,
+  y: 0,
+  ease: "power3.out",
+  stagger: 0.1,
+  duration: 0.6
+});
+
+// Animate the projects wrapper
+aboutTimeline.fromTo(
+  "#projects-wrapper",
+  { opacity: 0, y: 50 },
+  {
+    opacity: 1,
+    y: 0,
+    ease: "power2.out",
+    stagger: 0.3,
+    duration: 1.5
+  },
+  "<0.2"
+);
 
 
 // -----------------------------
 // Project section scale animation
 // -----------------------------
 const wrapper = document.querySelector("#projects-wrapper");
-  const scrollAmount = wrapper.scrollWidth - window.innerWidth;
+const scrollAmount = wrapper.scrollWidth - window.innerWidth;
 
-  const tl = gsap.timeline({
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: wrapper,
+    start: "top top",
+    end: () => `+=${3000 + scrollAmount}`,
+    scrub: true,
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
+    invalidateOnRefresh: true
+  }
+});
+
+// Step 1: scale wrapper
+tl.fromTo(wrapper,
+  { scale: 0.5 },
+  { scale: 1, ease: "power2.out" }
+);
+
+// Animate the projects wrapper children
+aboutTimeline.fromTo(
+  ['#projects-wrapper h1', '#projects-wrapper p', '#projects-wrapper button'],
+  { opacity: 0, y: 100 },
+  {
+    opacity: 1,
+    y: 0,
+    ease: "power2.out",
+    stagger: 0.3,
+    duration: 1.5
+  },
+  "<0.5"
+);
+
+
+
+  let container = document.querySelector("#projects-image");
+  let sectionx = gsap.utils.toArray("#projects-image > div");
+
+  gsap.to(sectionx, {
+    yPercent: -100 * (sectionx.length - 1), // সব images উপরে যাবে একে একে
+    ease: "none",
     scrollTrigger: {
-      trigger: wrapper,
+      trigger: "#projects-section",
       start: "top top",
-      end: () => `+=${3000 + scrollAmount}`,
+      end: "+=" + (sectionx.length * 100) + "%", // scroll length dynamic
       scrub: true,
       pin: true,
-      pinSpacing: true,
       anticipatePin: 1,
-      invalidateOnRefresh: true
     }
   });
 
-  // Step 1: scale wrapper
-  tl.fromTo(wrapper,
-    { scale: 0.5 },
-    { scale: 1, ease: "power2.out" }
-  );
-
-  // Step 2: fade in and move up elements sequentially
-  tl.fromTo(
-    ['#projects-wrapper h1', '#projects-wrapper p', '#projects-wrapper button'],
-    { opacity: 0, y: 100 },
-    { opacity: 1, y: 0, ease: "none" },
-    "<"
-  );

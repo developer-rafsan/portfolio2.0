@@ -26,7 +26,6 @@ h1 {
 html,
 body {
   width: 100%;
-  height: 100%;
   color: var(--text-color);
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -60,24 +59,18 @@ body::-webkit-scrollbar {
 /* Main Heading */
 #mainHeading {
   width: 60%;
-  font-size: 10vw;
-  margin-top: -100px;
+  font-size: 7vw;
   will-change: transform;
 }
 
 #mainHeading span {
-  color: var(--accent-color);
+  color: #ecf6ffec;
   display: inline-block;
   transform: rotate(var(--rotate, 0deg));
 }
 
-/* Simplify rotations using odd */
-#mainHeading span:nth-child(odd) {
-  transform: rotate(-10deg);
-}
-
 /* Skill Text Styles */
-.skill-text {
+.skills {
   font-size: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -99,12 +92,11 @@ body::-webkit-scrollbar {
 /* Reveal Text Animation */
 .reveal-h3 {
   position: relative;
-  display: inline-block;
-  font-size: 2.5rem;
-  line-height: 1.4;
+  font-size: 3rem;
+  line-height: 1.2;
   max-width: 900px;
-  text-align: start;
-  font-weight: 800;
+  text-align: center;
+  font-weight: 600;
 }
 
 .reveal-h3 .base span,
@@ -123,9 +115,31 @@ body::-webkit-scrollbar {
   opacity: 0; 
 }
 
+.assets-rafsan::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 150%;
+  width: 150%;
+  background: url('../assets/rounded.png') no-repeat center/cover;
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 #projects-wrapper:first-child button {
-  height: 260px;
-  width: 120px;
+  height: 180px;
+  width: 80px;
   border-radius: 100px;
   border: none;
   background: #ff005c;
