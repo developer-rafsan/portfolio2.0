@@ -125,7 +125,7 @@ aboutTimeline.fromTo(
   {
     opacity: 1,
     y: 0,
-    ease: "power3.out",
+    ease: "power2.out",
     stagger: 0.3,
     duration: 1.5
   },
@@ -144,7 +144,7 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: wrapper,
     start: "top top",
-    end: "+=" + (sectionx.length * 100 + 100) + "%",
+    end: "+=" + (sectionx.length * 150 + 200) + "%", // longer scroll range
     scrub: true,
     pin: true,
     pinSpacing: true,
@@ -153,24 +153,25 @@ const tl = gsap.timeline({
   }
 });
 
-// Step 1: scale wrapper
+// Step 1: slow zoom in
 tl.fromTo(wrapper,
   { scale: 0.5 },
-  { scale: 1, ease: "power3.out", duration: 2 }
+  { scale: 1, ease: "power2.inOut", duration: 3 } // longer duration
 );
 
 // Step 2: vertical slide for images
 tl.to(sectionx, {
   yPercent: -100 * (sectionx.length - 1),
   ease: "none",
-  duration: sectionx.length
+  duration: sectionx.length * 2 // slower movement
 });
 
-// Step 1: scale wrapper
+// Step 3: slow zoom out
 tl.fromTo(wrapper,
   { scale: 1 },
-  { scale: 0.5, ease: "power3.out", duration: 2 }
+  { scale: 0.5, ease: "power3.inOut", duration: 3 }
 );
+
 
 
 // Pin the section
@@ -188,18 +189,6 @@ gsap.to("#video-slider div", {
     pin: true,
   }
 });
-
-
-
-
-
-// container.addEventListener('mousemove', (e) => {
-
-// });
-
-// container.addEventListener('mouseleave', () => {
-
-// });
 
 
 const cursor = document.querySelector('.gloval-cursore');
