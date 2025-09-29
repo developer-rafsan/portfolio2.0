@@ -156,7 +156,7 @@ const tl = gsap.timeline({
 // Step 1: scale wrapper
 tl.fromTo(wrapper,
   { scale: 0.5 },
-  { scale: 1, ease: "power3.out", duration: 1 }
+  { scale: 1, ease: "power3.out", duration: 2 }
 );
 
 // Step 2: vertical slide for images
@@ -165,3 +165,9 @@ tl.to(sectionx, {
   ease: "none",
   duration: sectionx.length
 });
+
+// Step 1: scale wrapper
+tl.fromTo(wrapper,
+  { scale: 1 },
+  { scale: 0.5, ease: "power3.out", duration: 2 }
+);

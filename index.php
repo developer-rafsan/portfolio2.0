@@ -1,4 +1,18 @@
-<?php include 'template/header.php'; ?>
+<?php
+$apiKey = "AIzaSyBngsaFVy5XpOoPlRt5x-uyLhzJMEfIyWc";
+$playlistId = "PLlNSSJVXsy4V4Z4X4Y9wSZRfBGdspmvsi";
+$maxResults = 6;
+
+// YouTube API URL
+$url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults={$maxResults}&playlistId={$playlistId}&key={$apiKey}";
+
+// Fetch data from YouTube API
+$response = file_get_contents($url);
+$data = json_decode($response, true);
+
+include 'template/header.php'; 
+
+?>
 
 
 <!-- Hero Section -->
@@ -49,12 +63,27 @@
 
 
 <!-- Projects Section -->
-<section id="projects-wrapper"
-    class="h-[100vh] w-full flex space-between items-center bg-white overflow-hidden relative">
-    <div class="w-1/2 h-full flex flex-col items-center justify-center p-10 space-y-20">
+<?php
+$projects = [
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg",
+    "project-medical.jpg"
+];
+?>
+
+<section id="projects-wrapper" class="h-screen w-full flex items-center bg-white overflow-hidden relative">
+
+    <!-- LEFT: Content -->
+    <div class="w-1/2 h-full flex flex-col items-center justify-center p-10">
         <div>
-            <h1 class="text-[5vw] text-black mb-4 text-one">OUR WORKS</h1>
-            <p class="text-gray-500 mb-6 max-w-lg">Case Studies, a selection of successful projects.<br>
+            <h1 class="text-[5vw] text-black mb-6 font-bold">OUR WORKS</h1>
+            <p class="text-gray-600 max-w-lg leading-relaxed">
+                Case Studies, a selection of successful projects.<br>
                 We always put our clients first to deliver our best time after time.<br>
                 Below is some of our proudest work.
             </p>
@@ -62,31 +91,16 @@
     </div>
 
     <!-- RIGHT: Images -->
-    <div id="projects-image" class="w-1/2 h-full flex flex-col items-center justify-start relative overflow-hidden space-y-20 py-10">
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
+    <div id="projects-image"
+        class="w-1/2 h-full flex flex-col items-center justify-start relative overflow-hidden space-y-12 py-10 -mr-12">
+
+        <?php foreach($projects as $index => $img): ?>
+        <div class="flex items-center justify-center w-full">
+            <img src="./assets/image/<?php echo $img; ?>" alt="Project <?php echo $index + 1; ?>"
+                class="rounded-xl shadow-lg w-full object-cover">
         </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
-        <div class="flex items-center justify-center w-full mr-[-50px]">
-            <img src="./assets/image/project-medical.jpg" alt="" class="rounded-lg shadow-md w-full max-h-[100%]">
-        </div>
+        <?php endforeach; ?>
+
     </div>
 </section>
 
@@ -95,10 +109,36 @@
 
 
 
-<!-- next -->
-<section class="h-[100vh] flex items-center justify-center bg-white overflow-hidden relative">
 
+<!-- youtube videos -->
+<section class="h-[100vh] flex items-start justify-center bg-black overflow-hidden relative">
+    <!-- Marquee / background moving text -->
+    <div id="marquee" class="absolute flex whitespace-nowrap select-none">
+        <?php 
+            $marqueeText = "Youtube Videos";
+            echo "<h1 class='text-[20vw] uppercase stroke-text px-10'>" . htmlspecialchars($marqueeText) . "</h1>";
+            echo "<h1 class='text-[20vw] uppercase stroke-text px-10'>" . htmlspecialchars($marqueeText) . "</h1>";
+            ?>
+    </div>
 
+    <!-- youtube video -->
+    <div>
+        <?php
+    if(isset($data['items'])) {
+        foreach($data['items'] as $item) {
+            $videoId = $item['snippet']['resourceId']['videoId'];
+            $title = $item['snippet']['title'];
+            $thumbnail = $item['snippet']['thumbnails']['medium']['url'];
+            echo "<div class='video-thumb'>
+                    <a href='https://www.youtube.com/watch?v={$videoId}' target='_blank'>
+                        <img src='{$thumbnail}' alt='{$title}'>
+                    </a>
+                    <p>{$title}</p>
+                  </div>";
+        }
+    }
+    ?>
+    </div>
 </section>
 
 
