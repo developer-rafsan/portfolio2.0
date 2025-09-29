@@ -23,6 +23,10 @@ h1 {
   line-height: 1.1;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   width: 100%;
@@ -123,7 +127,7 @@ body::-webkit-scrollbar {
   transform: translate(-50%, -50%);
   height: 150%;
   width: 150%;
-  background: url('../assets/rounded.png') no-repeat center/cover;
+  background: url('../assets/webdevelop-text.png') no-repeat center/cover;
   border-radius: 50%;
   animation: rotate 20s linear infinite;
 }
