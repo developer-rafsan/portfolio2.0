@@ -144,7 +144,7 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: wrapper,
     start: "top top",
-    end: "+=" + (sectionx.length * 150 + 200) + "%", // longer scroll range
+    end: "+=" + (sectionx.length * 150 + 200) + "%", 
     scrub: true,
     pin: true,
     pinSpacing: true,
@@ -156,7 +156,7 @@ const tl = gsap.timeline({
 // Step 1: slow zoom in
 tl.fromTo(wrapper,
   { scale: 0.5 },
-  { scale: 1, ease: "power2.inOut", duration: 3 } // longer duration
+  { scale: 1, ease: "power2.inOut", duration: 3 } 
 );
 
 // Step 2: vertical slide for images
@@ -205,7 +205,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Hover effect
-document.querySelectorAll('a, button').forEach(el => {
+document.querySelectorAll('a, button,#projects-image img').forEach(el => {
     el.addEventListener('mouseenter', () => {
         gsap.to(cursor, { 
             scale: 2.5, 
