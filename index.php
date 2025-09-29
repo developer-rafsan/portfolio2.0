@@ -48,8 +48,7 @@
 
 
     <!-- Projects Section -->
-    <section id="projects-wrapper"
-        class="h-[100vh] w-full flex space-between items-center bg-white overflow-hidden relative">
+    <section id="projects-wrapper" class="h-[100vh] w-full flex space-between items-center bg-white overflow-hidden relative">
 
         <div class="w-full h-full flex flex-col items-center justify-center p-10 space-y-20">
             <div>
@@ -63,16 +62,15 @@
         </div>
 
         <!-- Projects Container -->
-        <div id="projects-container" class=" w-full h-full bg-[#ff005c]">
-
-        </div>
+        <div id="projects-container" class=" w-full h-full bg-[#ff005c]"></div>
     </section>
 
 
 
     <!-- next section -->
     <section class="h-[100vh] flex items-center justify-center">
-        <h2 class="text-4xl text-white">Next Section</h2>
+        <div id="projects-container" class=" w-full h-full bg-[#ff005c]"></div>
+        <div id="projects-container" class=" w-full h-full bg-white"></div>
     </section>
 
 

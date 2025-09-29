@@ -118,48 +118,32 @@ gsap.to(".reveal-h3 .top span", {
 // -----------------------------
 // Project section scale animation
 // -----------------------------
-let wrapper = document.querySelector("#projects-wrapper");
-let scrollAmount = wrapper.scrollWidth - window.innerWidth;
+const wrapper = document.querySelector("#projects-wrapper");
+  const scrollAmount = wrapper.scrollWidth - window.innerWidth;
 
-// Timeline: scale first → then horizontal scroll
-let tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: wrapper,
-    start: "top top",
-    end: () => `+=${3000 + scrollAmount}`,
-    scrub: true,       
-    pin: true,
-    pinSpacing: true,
-    anticipatePin: 1,
-    invalidateOnRefresh: true
-  }
-});
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: wrapper,
+      start: "top top",
+      end: () => `+=${3000 + scrollAmount}`,
+      scrub: true,
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
 
-// Step 1: scale wrapper
-tl.fromTo(wrapper,
-  { scale: 0.5 },
-  { scale: 1, ease: "power2.out" }
-);
+  // Step 1: scale wrapper
+  tl.fromTo(wrapper,
+    { scale: 0.5 },
+    { scale: 1, ease: "power2.out" }
+  );
 
-// Step 2: fade in and move up as scroll continues
-tl.fromTo('#projects-wrapper h1', 
-  { opacity: 0, y: 100 }, 
-  { opacity: 1, y: 0, ease: "none" }, 
-  "<" 
-);
-
-// Step 3: fade in and move up as scroll continues
-tl.fromTo('#projects-wrapper p', 
-  { opacity: 0, y: 100 }, 
-  { opacity: 1, y: 0, ease: "none" }, 
-  "<" 
-);
-
-// Step 3: fade in and move up as scroll continues
-tl.fromTo('#projects-wrapper button', 
-  { opacity: 0, y: 100 }, 
-  { opacity: 1, y: 0, ease: "none" }, 
-  "<" 
-);
-
-
+  // Step 2: fade in and move up elements sequentially
+  tl.fromTo(
+    ['#projects-wrapper h1', '#projects-wrapper p', '#projects-wrapper button'],
+    { opacity: 0, y: 100 },
+    { opacity: 1, y: 0, ease: "none" },
+    "<"
+  );
