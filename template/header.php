@@ -32,6 +32,11 @@
     <!-- Hero Section -->
     <div class="light" style='--top: -80px; --left: 0px;'></div>
 
+    <!-- cursore -->
+    <div class="gloval-cursore fixed pointer-events-none z-50 flex items-center justify-center">
+        <span class="cursor-text text-white text-sm opacity-0">View</span>
+    </div>
+
     <header class="w-[250px] absolute top-10 left-20 z-50 flex items-center justify-start space-x-10">
         <i class="fa-solid fa-bars 
           h-10 w-20         

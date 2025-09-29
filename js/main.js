@@ -171,3 +171,71 @@ tl.fromTo(wrapper,
   { scale: 1 },
   { scale: 0.5, ease: "power3.out", duration: 2 }
 );
+
+
+// Pin the section
+const slider = document.getElementById("video-slider");
+const totalScroll = slider.scrollWidth - window.innerWidth;
+
+gsap.to("#video-slider div", {
+  x: -totalScroll,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".videos-section",
+    start: "top top",
+    end: () => "+=" + totalScroll,
+    scrub: true,
+    pin: true,
+  }
+});
+
+
+
+
+
+// container.addEventListener('mousemove', (e) => {
+
+// });
+
+// container.addEventListener('mouseleave', () => {
+
+// });
+
+
+const cursor = document.querySelector('.gloval-cursore');
+const cursorText = cursor.querySelector('.cursor-text');
+
+// Move cursor with mouse
+document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, {
+        duration: 0.05,
+        x: e.clientX,
+        y: e.clientY,
+        ease: "power1.out"
+    });
+});
+
+// Hover effect
+document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        gsap.to(cursor, { 
+            scale: 2.5, 
+            backgroundColor: "#ffffff5e", 
+            backdropFilter: "blur(10px)",
+            duration: 0.3
+        });
+        gsap.to(cursorText, { opacity: 1, duration: 0.3 });
+    });
+
+    el.addEventListener('mouseleave', () => {
+        gsap.to(cursor, { 
+            scale: 1, 
+            backgroundColor: "transparent",
+            backdropFilter: "blur(0px)",
+            duration: 0.3
+        });
+        gsap.to(cursorText, { opacity: 0, duration: 0.3 });
+    });
+});
+
+

@@ -111,35 +111,53 @@ $projects = [
 
 
 <!-- youtube videos -->
-<section class="h-[100vh] flex items-start justify-center bg-black overflow-hidden relative">
+<section class="videos-section h-[100vh] relative overflow-hidden">
     <!-- Marquee / background moving text -->
     <div id="marquee" class="absolute flex whitespace-nowrap select-none">
         <?php 
             $marqueeText = "Youtube Videos";
-            echo "<h1 class='text-[20vw] uppercase stroke-text px-10'>" . htmlspecialchars($marqueeText) . "</h1>";
-            echo "<h1 class='text-[20vw] uppercase stroke-text px-10'>" . htmlspecialchars($marqueeText) . "</h1>";
-            ?>
+            for($i=0; $i<3; $i++){
+                echo "<h1 class='text-[18vw] uppercase stroke-text px-10 leading-none'>" . htmlspecialchars($marqueeText) . "</h1>";
+            }
+        ?>
     </div>
 
-    <!-- youtube video -->
-    <div>
+    <h1 class="relative font-bold text-9xl text-white uppercase mt-10 px-10">
+        youtube video
+    </h1>
+
+    <!-- YouTube video slider -->
+    <div id="video-slider" class="flex flex-nowrap gap-10 px-10 w-full mt-[10%]">
         <?php
-    if(isset($data['items'])) {
-        foreach($data['items'] as $item) {
-            $videoId = $item['snippet']['resourceId']['videoId'];
-            $title = $item['snippet']['title'];
-            $thumbnail = $item['snippet']['thumbnails']['medium']['url'];
-            echo "<div class='video-thumb'>
-                    <a href='https://www.youtube.com/watch?v={$videoId}' target='_blank'>
-                        <img src='{$thumbnail}' alt='{$title}'>
-                    </a>
-                    <p>{$title}</p>
-                  </div>";
-        }
-    }
-    ?>
+            if(isset($data['items'])) {
+                foreach($data['items'] as $item) {
+                    $videoId = $item['snippet']['resourceId']['videoId'];
+                    $title = $item['snippet']['title'];
+
+                    // Use the highest quality thumbnail available
+                    if(isset($item['snippet']['thumbnails']['maxres'])) {
+                        $thumbnail = $item['snippet']['thumbnails']['maxres']['url'];
+                    } elseif(isset($item['snippet']['thumbnails']['standard'])) {
+                        $thumbnail = $item['snippet']['thumbnails']['standard']['url'];
+                    } elseif(isset($item['snippet']['thumbnails']['high'])) {
+                        $thumbnail = $item['snippet']['thumbnails']['high']['url'];
+                    } else {
+                        $thumbnail = $item['snippet']['thumbnails']['medium']['url'];
+                    }
+
+                    echo "<div class='flex-shrink-0 w-2/5 relative group'>
+                            <a href='https://www.youtube.com/watch?v={$videoId}' target='_blank'>
+                                <img src='{$thumbnail}' alt='{$title}' class='w-full max-h-[400px] rounded-xl shadow-lg object-cover overflow-hidden border'>
+                            </a>
+                            <p class='text-white text-2xl mt-4'>{$title}</p>
+                        </div>";
+                }
+            }
+            ?>
+
     </div>
 </section>
+
 
 
 
