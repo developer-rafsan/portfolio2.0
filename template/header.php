@@ -25,6 +25,10 @@
     <!-- SwiperJS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+
+    <!-- unpkg -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-black">

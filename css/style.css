@@ -12,7 +12,7 @@
   --text-color: #f1f1f1;
   --accent-color: #ff005c;
   --stroke-color: #ffffff36;
-  --bg-light: #d2e0f88c;
+  --bg-light: #d2e0f827;
   --blur-size: 130px;
 }
 
@@ -84,14 +84,12 @@ body::-webkit-scrollbar {
 
 /* Main Heading */
 #mainHeading {
-  width: 60%;
-  font-size: 7vw;
+  font-size: 12vw;
   will-change: transform;
 }
 
 #mainHeading span {
   color: #ecf6ffec;
-  display: inline-block;
   transform: rotate(var(--rotate, 0deg));
 }
 
