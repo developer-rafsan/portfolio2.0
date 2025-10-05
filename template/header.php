@@ -36,12 +36,13 @@
     <!-- Hero Section -->
     <div class="light" style='--top: -80px; --left: 0px; z-10'></div>
 
-    <!-- cursore -->
-    <div class="gloval-cursore fixed pointer-events-none z-50 flex items-center justify-center">
-        <span class="cursor-text text-white text-sm opacity-0">View</span>
+    <!-- Cursor -->
+    <div class="gloval-cursore fixed pointer-events-none z-50 flex items-center justify-center border border-white rounded-full w-10 h-10">
+    <span class="cursor-text text-white text-sm opacity-0">View</span>
     </div>
 
-    <header style="z-index: 9999" class="w-[250px] fixed top-10 left-20 z-50 flex items-center justify-start space-x-10">
+    <header style="z-index: 9999"
+        class="w-[250px] fixed top-10 left-20 z-50 flex items-center justify-start space-x-10">
         <i class="fa-solid fa-bars 
           h-10 w-20         
           bg-white 
@@ -51,6 +52,6 @@
           cursor-pointer"></i>
 
         <div class="logo w-full">
-            <img src="./assets/logo.svg" alt="brand logo" />
+            <img src="./assets/logo.svg" alt="brand logo" class="w-32 mix-blend-difference" />
         </div>
     </header>

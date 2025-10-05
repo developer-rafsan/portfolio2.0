@@ -6,6 +6,6 @@
     </footer>
 
     <!-- script js -->
-     <script type="module" src="./js/main.js"></script>
-</body>
+    <script type="module" src="./js/main.js"></script>
+    </body>
 </html>
